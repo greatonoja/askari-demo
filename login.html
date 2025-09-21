@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Demo</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="container login-page">
+    <h1>Sign In or Register</h1>
+
+    <div class="auth-grid">
+      <div class="card">
+        <h3>Sign In</h3>
+        <form id="loginForm">
+          <input type="email" id="loginEmail" placeholder="Email" required />
+          <input type="password" id="loginPassword" placeholder="Password" required />
+          <button type="submit" class="btn">Sign In</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Create Account</h3>
+        <form id="registerForm">
+          <input type="text" id="regName" placeholder="Full name" required />
+          <input type="email" id="regEmail" placeholder="Email" required />
+          <input type="password" id="regPassword" placeholder="Password" required />
+          <button type="submit" class="btn">Register</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    auth.ensureDemoUser(); // create demo auth if not exists
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPassword').value;
+      const ok = auth.login(email, pass);
+      if (ok) {
+        const next = new URLSearchParams(window.location.search).get('next') || 'account.html';
+        window.location.href = next;
+      } else {
+        alert('Login failed — check credentials.');
+      }
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const pass = document.getElementById('regPassword').value;
+      const ok = auth.register({ name, email, password: pass });
+      if (ok) {
+        alert('Account created — you can sign in now.');
+        document.getElementById('regName').value = '';
+        document.getElementById('regEmail').value = '';
+        document.getElementById('regPassword').value = '';
+      } else {
+        alert('Account exists or invalid data.');
+      }
+    });
+  </script>
+</body>
+</html>

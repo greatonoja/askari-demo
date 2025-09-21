@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop — PHARM STORE</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">PHARM STORE</a>
+      <div class="search">
+        <input id="searchInput" placeholder="Search products..." />
+        <a id="searchBtn" class="btn small">Search</a>
+      </div>
+      <nav class="top-nav">
+        <a href="health-hub.html">Health Hub</a>
+        <a href="product-list.html" class="active">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="account.html" id="accountLink">Account</a>
+        <a href="login.html" id="loginLink">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="filters">
+      <select id="categoryFilter">
+        <option value="">All categories</option>
+      </select>
+      <select id="sortSelect">
+        <option value="default">Sort</option>
+        <option value="price-asc">Price — low to high</option>
+        <option value="price-desc">Price — high to low</option>
+      </select>
+    </section>
+
+    <section class="product-list">
+      <div id="productsGrid" class="product-grid"></div>
+      <div class="product-grid">
+
+      <a href="#" class="product-card">
+        <img src="/asset/WhatsApp Image 2025-09-21 at 00.00.52_a7b1ea32.jpg" alt="Pain Relief Tablets">
+        <h3 style="color: black;">Pain Relief Tablets</h3>
+        <p class="price">$10.99</p>
+      </a>
+
+      <a href="#" class="product-card">
+        <img src="/asset/WhatsApp Image 2025-09-21 at 00.00.51_e505d5f8.jpg" alt="Vitamin C">
+        <h3 style="color: black;">Vitamin C</h3>
+        <p class="price">$7.50</p>
+      </a>
+
+      <a href="#" class="product-card">
+        <img src="/asset/skin care.png" alt="Skin Cream">
+        <h3 style="color: black;">Skin Cream</h3>
+        <p class="price">$15.00</p>
+      </a>
+
+      <a href="#" class="product-card">
+        <img src="/asset/Cough.png" alt="Cough Syrup">
+        <h3 style="background-color: black;">Cough Syrup</h3>
+        <p class="price">$8.99</p>
+      </a>
+      
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; Askari Pharmacy & store</p>
+    </div>
+  </footer>
+
+  <script src="js/product.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    ui.updateHeaderAuth();
+    filters.init(products);
+    ui.renderProducts(products, document.getElementById('productsGrid'));
+  </script>
+</body>
+</html>
